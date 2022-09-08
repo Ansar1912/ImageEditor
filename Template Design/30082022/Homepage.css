@@ -1,0 +1,73 @@
+img {
+    /* display: block; */
+    /* max-width: 50rem; */
+    /* width: 80%; */
+  }
+.mainscreen{
+  display: flex;
+  
+}
+.cropshow{
+  width: 75%;
+  height: 100vh;
+  background-color: aqua;
+}  
+.mycarousel{
+  position: absolute;
+  width: 20%;
+  height: 100vh;
+  background-color: lightgray;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mycarousel .footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 10%;
+  background-color: aqua;
+  display: flex;
+  vertical-align: middle;
+}
+
+.mycarousel .header{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 10%;
+  background-color: aqua;
+  display: flex;
+  vertical-align: middle;
+}
+
+.mycarousel .middlebody{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height: 75%;
+  width: 80%;
+  left: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mycarousel .middlebody img{
+  display: flex;
+  max-height: 250px;
+  max-width: 500px;
+}
+
+.mycarousel .middlebody .active{
+  border: 0.5rem ridge grey;
+  border-radius: 5px;
+}
+
+.downbtn, .upbtn{
+  display: block !important;
+  margin: 1.5rem auto !important;
+  width: 10rem;
+}

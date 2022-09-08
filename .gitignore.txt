@@ -1,0 +1,3 @@
+/media/imageresize/Editimage
+/media/imagewatermark/Editimage
+/media/zipfiles/
