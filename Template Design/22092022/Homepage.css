@@ -1,0 +1,138 @@
+body {
+  overflow-y: hidden;
+}
+
+.mainscreen {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.leftpotion {
+  width: 80%;
+  height: 100%;
+  background-color: lightgray;
+}
+
+.rightpotion {
+  width: 20%;
+  height: 100%;
+  background-color: blue;
+}
+
+.mynavbar {
+  height: 10%;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+}
+
+.uploadbtn {
+  margin: 0 2rem;
+  height: 60%;
+  width: 10rem;
+}
+
+.cropbtn {
+  position: absolute;
+  right: 20%;
+  margin: 0 2rem;
+  height: 6%;
+  width: 10%;
+}
+
+.mynavbar .btn:hover{
+  background-color: blue;
+  border-color: blue;
+  font-weight: bold;
+}
+.cropshow {
+  height: 86%;
+  margin: 1%;
+}
+
+.cropshow img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+
+.mycarousel {
+  position: absolute;
+  width: 20%;
+  height: 100vh;
+  background-color: lightgray;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border: 0.5rem solid grey;
+}
+
+.mycarousel .footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 10%;
+  background-color: grey;
+  display: flex;
+  vertical-align: middle;
+}
+
+.mycarousel .header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 10%;
+  background-color: grey;
+  display: flex;
+  vertical-align: middle;
+}
+
+.mycarousel .middlebody {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 75%;
+  width: 80%;
+  left: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mycarousel .middlebody img {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  margin: 0 auto;
+  object-fit: contain;
+  background-color: black;
+}
+
+.mycarousel .header button:hover,
+.footer button:hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.mycarousel .middlebody .active {
+  border: 0.5rem ridge #576374;
+  border-radius: 5%;
+}
+
+.downbtn,
+.upbtn {
+  display: block !important;
+  margin: 1.5rem auto !important;
+  width: 10rem;
+}
+
+.upper {
+  height: 0 !important;
+  transition: all 0.3s ease-in;
+}

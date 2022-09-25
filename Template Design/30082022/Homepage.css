@@ -7,11 +7,13 @@ img {
   display: flex;
   
 }
-.cropshow{
-  width: 75%;
-  height: 100vh;
-  background-color: aqua;
+
+.cropshow {
+  width: 80%;
+  height: 99vh;
+  background-color: #f2f2f2;
 }  
+
 .mycarousel{
   position: absolute;
   width: 20%;
