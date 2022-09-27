@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'imageresize.apps.ImageresizeConfig',
     'imagewatermark.apps.ImagewatermarkConfig',
+    'imagecrop.apps.ImagecropConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,6 +61,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'imageresize', 'Template'),
             os.path.join(BASE_DIR, 'imagewatermark', 'Template'),
+            os.path.join(BASE_DIR, 'imagecrop', 'Template'),
             # os.path.join(BASE_DIR, 'Template')
         ],
         'APP_DIRS': True,

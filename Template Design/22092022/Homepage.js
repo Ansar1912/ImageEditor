@@ -7,7 +7,7 @@ const cropper = new Cropper(image, {
   // background: false,
   zoomable: false,
   crop(event) {
-    let data=cropper.getData()
+    let data = cropper.getData()
     console.log(Math.round(data.x));
     console.log(Math.round(data.y));
     // console.log(event.detail.y);
@@ -20,21 +20,28 @@ const cropper = new Cropper(image, {
 });
 
 var topindex = 0;
-var bottomindex = 0
+var bottomindex = 3
 
 // Adding image on the right side of the panel
-inputfile = document.querySelector("input")
+inputfile = document.querySelector(".mynavbar input")
 inputfile.addEventListener("change", (e) => {
-  $(".cropshow img").attr("src", "testimage/" + inputfile.files[0].name)
-  let sidepanelimg=$(".middlebody img")
-  for (let i = 0; i < 3; i++) {
-    sidepanelimg[i].src="testimage/" + inputfile.files[i].name
-    bottomindex = i
-    if (i == 3){
-      break;
-    }
+  for (let index = 0; index < 3; index++) {
+    loadingimg(index);
   }
 });
+
+function loadingimg(i) {
+  let sidepanelimg = $(".middlebody img")
+  let reader = new FileReader();
+  reader.onload = ((e) => {
+    sidepanelimg[i].src = e.target.result
+  })
+  reader.readAsDataURL(inputfile.files[i])
+}
+
+document.querySelector(".uploadbtn").addEventListener("click", (e) => {
+  $(".mynavbar input").click();
+})
 
 // Active class right side of the panel
 function imgclickevent(e) {
@@ -47,22 +54,18 @@ function imgclickevent(e) {
 
 // up button processing
 document.querySelector(".footer button").addEventListener("click", (e) => {
-  if($(".middlebody .thirdimg").attr("class").indexOf(" active")<0)
-  {
+  if ($(".middlebody .thirdimg").attr("class").indexOf(" active") < 0) {
     let allimg = $(".middlebody img")
-    for(let i=0;i<allimg.length-1;i++)
-    {
-      console.log(allimg[i].className.indexOf(" active"))
-      if(allimg[i].className.indexOf(" active")>0)
-      {
+    for (let i = 0; i < allimg.length - 1; i++) {
+      if (allimg[i].className.indexOf(" active") > 0) {
         allimg[i].className = allimg[i].className.replace(" active", "")
-        console.log(allimg[i])
-        allimg[i+1].className+=" active"
+
+        allimg[i + 1].className += " active"
         break;
       }
-      
+
     }
-    
+
   }
   else if (topindex >= 0 && bottomindex < inputfile.files.length - 1) {
     topindex++
@@ -73,37 +76,36 @@ document.querySelector(".footer button").addEventListener("click", (e) => {
       current.className += " active";
 
     }
-
     rightpanelimg.slideUp();
     rightpanelimg.remove();
-
-    let newimg = '<img class="thirdimg" src="testimage/' + inputfile.files[bottomindex].name + '" onclick="imgclickevent(this)">'
+    let reader = new FileReader();
+    let newimg = '<img class="thirdimg" src="" onclick="imgclickevent(this)">'
     $('.middlebody').append(newimg)
-    let allimg = $(".middlebody img")
-    allimg[0].className = allimg[0].className.replace("secondimg", "firstimg")
-    allimg[1].className = allimg[1].className.replace("thirdimg", "secondimg")
-    // allimg[2].className = allimg[2].className.replace("firstimg", "thirdimg")
-    rightpanelimg = document.querySelectorAll(".middlebody img");
+      let allimg = $(".middlebody img")
+      allimg[0].className = allimg[0].className.replace("secondimg", "firstimg")
+      allimg[1].className = allimg[1].className.replace("thirdimg", "secondimg")
+      // loading the new img
+    reader.onload=(e)=>{
+      $(".middlebody img")[2].src=e.target.result
+    }
+    console.log(bottomindex)
+    reader.readAsDataURL(inputfile.files[bottomindex])
   }
 })
 
 document.querySelector(".header button").addEventListener("click", (e) => {
-  if($(".middlebody .firstimg").attr("class").indexOf(" active")<0)
-  {
+  if ($(".middlebody .firstimg").attr("class").indexOf(" active") < 0) {
     let allimg = $(".middlebody img")
-    for(let i=1;i<allimg.length;i++)
-    {
-      console.log(allimg[i].className.indexOf(" active"))
-      if(allimg[i].className.indexOf(" active")>0)
-      {
+    for (let i = 1; i < allimg.length; i++) {
+
+      if (allimg[i].className.indexOf(" active") > 0) {
         allimg[i].className = allimg[i].className.replace(" active", "")
-        console.log(allimg[i])
-        allimg[i-1].className+=" active"
+        allimg[i - 1].className += " active"
         break;
       }
-      
+
     }
-  }  
+  }
   else if (topindex > 0) {
     topindex--
     bottomindex--
@@ -115,14 +117,36 @@ document.querySelector(".header button").addEventListener("click", (e) => {
 
     rightpanelimg.slideDown();
     rightpanelimg.remove();
-
-    let newimg = '<img class="firstimg" src="testimage/' + inputfile.files[topindex].name + '" onclick="imgclickevent(this)">'
+    let reader=new FileReader();
+    let newimg = '<img class="firstimg" src="" onclick="imgclickevent(this)">'
     $('.middlebody').prepend(newimg)
     let allimg = $(".middlebody img")
     // allimg[0].className = allimg[0].className.replace("secondimg", "firstimg")
     allimg[1].className = allimg[1].className.replace("firstimg", "secondimg")
     allimg[2].className = allimg[2].className.replace("secondimg", "thirdimg")
-    // rightpanelimg = document.querySelectorAll(".middlebody img");
+    reader.onload=(e)=>{
+      $(".middlebody img")[0].src=e.target.result
+    }
+    reader.readAsDataURL(inputfile.files[topindex])
   }
 })
 
+
+
+document.querySelector(".cropbtn").addEventListener("click", (e) => {
+  let formdata = new FormData();
+  formdata.append("file",currentimg)
+  $.ajax({
+    url: '',
+    type: 'POST',
+    data: formdata,
+    success: function (response) {
+      console.log(response)
+      // $('#downloadlink').attr('href', response.filename)
+      // $('#downloadlink button').attr('disabled',false)
+    },
+    cache: false,
+    contentType: false,
+    processData: false
+  });
+})
