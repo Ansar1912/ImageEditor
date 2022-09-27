@@ -5,6 +5,14 @@ from imageresize.views import PILIMGMaker,zip_file_view
 import os
 import uuid
 from zipfile import ZipFile
+from click import File
+from django.http import HttpResponse
+from io import BytesIO
+
+import requests
+from django.core.files.base import ContentFile
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, HttpResponse, redirect
 from .models import *
 from PIL import Image

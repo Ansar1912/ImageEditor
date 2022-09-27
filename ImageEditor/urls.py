@@ -22,6 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('imageresize/',include('imageresize.urls')),
     path('imagewatermark/',include('imagewatermark.urls')),
-path('imagecrop/',include('imagecrop.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

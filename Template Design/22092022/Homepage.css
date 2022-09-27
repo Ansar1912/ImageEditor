@@ -2,10 +2,6 @@ body {
   overflow-y: hidden;
 }
 
-.btn:focus,.btn:active {
-  outline: none !important;
-  box-shadow: none;
-}
 .mainscreen {
   display: flex;
   width: 100%;
@@ -125,7 +121,7 @@ body {
 }
 
 .mycarousel .middlebody .active {
-  border: 0.5rem ridge goldenrod;
+  border: 0.5rem ridge #576374;
   border-radius: 5%;
 }
 
