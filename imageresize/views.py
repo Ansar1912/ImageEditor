@@ -67,4 +67,4 @@ def PILIMGMaker(original_image,name,format):
 def zip_file_view(request,id):
     response = HttpResponse(open('media/zipfiles/'+id+".zip", 'rb'), content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename='+id+'.zip'
-    return response       
+    return response

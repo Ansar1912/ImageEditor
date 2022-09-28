@@ -134,30 +134,22 @@ document.querySelector(".header button").addEventListener("click", (e) => {
 })
 
 document.querySelector(".cropbtn").addEventListener("click", (e) => {
-  let formdata = new FormData();
-  let allimg = $(".middlebody img")
-  for(let i=0;i<3;i++){
-    if(allimg[i].className.indexOf("active")>0)
-    {
-        console.log(inputfile.files[topindex+i])
-        formdata.append('file',inputfile.files[topindex+i])
-        break;
-    }
-  }
-  console.log(formdata)
-//  let currentimg = $(".cropshow img").attr("src")
+  cropper.getCroppedCanvas().toBlob((blob) => {
 
-  $.ajax({
-    url: '',
-    type: 'POST',
-    data: formdata,
-    success: function (response) {
-//      console.log(response)
-      // $('#downloadlink').attr('href', response.filename)
-      // $('#downloadlink button').attr('disabled',false)
-    },
-    cache: false,
-    contentType: false,
-    processData: false
-  });
+  const formData = new FormData();
+    let filereader = new FileReader();
+    filereader.onload=(e)=>{
+      let a = $("<a>")
+    .attr("href", e.target.result)
+    .attr("download", "img.png")
+    .appendTo("body");
+
+a[0].click();
+
+a.remove();
+    }
+    filereader.readAsDataURL(blob)
+});
 })
+
+
